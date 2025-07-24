@@ -25,7 +25,6 @@ async function caso3_QuienesSomos() {
 
     await driver.wait(until.elementIsVisible(quienesSomos), 5000);
 
-    // Scroll y clic con JS por si está parcialmente cubierto
     await driver.executeScript(
       "arguments[0].scrollIntoView({behavior:'smooth', block:'center'});",
       quienesSomos
@@ -33,7 +32,6 @@ async function caso3_QuienesSomos() {
     await driver.sleep(500);
     await driver.executeScript("arguments[0].click();", quienesSomos);
 
-    // Manejar pestaña nueva
     const ventanas = await driver.getAllWindowHandles();
     if (ventanas.length > 1) {
       await driver.switchTo().window(ventanas[1]);
@@ -42,10 +40,10 @@ async function caso3_QuienesSomos() {
 
     await driver.wait(until.urlContains("quienes-somos"), 10000);
 
-    console.log("✅ Caso 3: Se accedió a “Quiénes Somos” correctamente");
+    console.log("Caso 3: Se accedió a “Quiénes Somos” correctamente");
     await driver.sleep(5000);
   } catch (error) {
-    console.error("❌ Error en el Caso 3:", error);
+    console.error("Error en el Caso 3:", error);
   } finally {
     await driver.quit();
   }
